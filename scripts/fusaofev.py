@@ -67,7 +67,7 @@ def join(dadosA, dadosB):
     return combined_list
 
 dados_empresaA = Dados(path_json, 'json')
-print(dados_empresaA)
+print(dados_empresaA.dados)
 
 #iniciando a leitura dos dados
 #dados_csv = leitura_dados(path_csv,'csv')
