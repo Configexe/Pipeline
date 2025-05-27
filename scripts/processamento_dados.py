@@ -4,9 +4,9 @@ import csv
 class Dados:
     def __init__(self, path, tipo_dados):
         self.path = path
-        self.tipo_dados = tipo_dados
-        self.dados = self.leitura_dados()
-        
+        self.tipo_dados = tipo_dados # Este é o atributo correto
+        self.dados = self.leitura_dados() # Chama o método para carregar os dados
+
     def leitura_json(self):
         dados_json = []
         with open(self.path, 'r') as file:
@@ -20,16 +20,15 @@ class Dados:
             spamreader = csv.DictReader(file, delimiter=',')
             for row in spamreader:
                 dados_csv.append(row)
-                
+
         return dados_csv
 
     def leitura_dados(self):
-        dados=[]
-        
-        if self.leitura_dados == 'csv':
+        dados = []
+
+        if self.tipo_dados == 'csv': # CORRIGIDO AQUI
             dados = self.leitura_csv()
-        elif self.leitura_dados =='json':
+        elif self.tipo_dados == 'json': # CORRIGIDO AQUI
             dados = self.leitura_json()
-        return dados
-    
+            return dados
     

@@ -3,8 +3,7 @@ import csv
 
 from processamento_dados import Dados
 #path
-path_json = 'data_raw/dados_empresaA.json'
-path_csv = 'data_raw/dados_empresaB.csv'
+
 
 #funções da pipeline
 
@@ -32,31 +31,6 @@ def rename_columns(dados, key_mapping):
 def getcolumns(dados):
     return list(dados[-1].keys())
 
-def leitura_json(path_json):
-    dados_json = []
-    with open(path_json, 'r') as file:
-        dados_json = json.load(file)
-    return dados_json
-
-
-def leitura_csv(path_csv):
-    dados_csv = []
-    with open(path_csv, 'r') as file:
-        spamreader = csv.DictReader(file, delimiter=',')
-        for row in spamreader:
-            dados_csv.append(row)
-            
-    return dados_csv
-
-def leitura_dados(path, tipo_arquivo):
-    dados=[]
-    
-    if tipo_arquivo == 'csv':
-        dados = leitura_csv(path)
-    elif tipo_arquivo =='json':
-        dados = leitura_json(path)
-    return dados
-
 def size_data(dados):
     return len(dados)
 
@@ -65,6 +39,9 @@ def join(dadosA, dadosB):
     combined_list.extend(dadosA)
     combined_list.extend(dadosB)
     return combined_list
+
+path_json = 'data_raw/dados_empresaA.json'
+path_csv = 'data_raw/dados_empresaB.csv'
 
 dados_empresaA = Dados(path_json, 'json')
 print(dados_empresaA.dados)
