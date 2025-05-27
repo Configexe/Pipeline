@@ -24,12 +24,6 @@ def transformando_dados_tabela(dados, nomes_colunas):
     
     return dados_combinados_tabela
 
-def rename_columns(dados, key_mapping):
-    new_dados_csv = [{key_mapping.get(old_key): value for old_key, value in old_dict.items()} for old_dict in dados]
-    return new_dados_csv
-
-def getcolumns(dados):
-    return list(dados[-1].keys())
 
 def size_data(dados):
     return len(dados)
@@ -43,9 +37,22 @@ def join(dadosA, dadosB):
 path_json = 'data_raw/dados_empresaA.json'
 path_csv = 'data_raw/dados_empresaB.csv'
 
+dados_empresaB = Dados(path_csv, 'csv')
 dados_empresaA = Dados(path_json, 'json')
-print(dados_empresaA.dados)
+print(dados_empresaA.nome_colunas)
 
+#transforme
+
+key_mapping = {'Nome do Item': 'Nome do Produto',
+           'Classificação do Produto':'Categoria do Produto',
+           'Valor em Reais (R$)':'Preço do Produto (R$)',
+           'Quantidade em Estoque':'Quantidade em Estoque',
+           'Nome da Loja':'Filial',
+           'Data da Venda': 'Data da Venda'}
+
+
+dados_empresaB.rename_columns(key_mapping)
+print(dados_empresaB.nome_colunas)
 #iniciando a leitura dos dados
 #dados_csv = leitura_dados(path_csv,'csv')
 #nome_colunas_csv = getcolumns(dados_csv)

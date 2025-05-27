@@ -6,6 +6,7 @@ class Dados:
         self.path = path
         self.tipo_dados = tipo_dados # Este é o atributo correto
         self.dados = self.leitura_dados() # Chama o método para carregar os dados
+        self.nome_colunas = self.getcolumns()
 
     def leitura_json(self):
         dados_json = []
@@ -26,9 +27,17 @@ class Dados:
     def leitura_dados(self):
         dados = []
 
-        if self.tipo_dados == 'csv': # CORRIGIDO AQUI
+        if self.tipo_dados == 'csv': 
             dados = self.leitura_csv()
-        elif self.tipo_dados == 'json': # CORRIGIDO AQUI
+        elif self.tipo_dados == 'json': 
             dados = self.leitura_json()
-            return dados
+        return dados
+        
+    def getcolumns(self):
+        return list(self.dados[-1].keys())
     
+    
+    def rename_columns(self, key_mapping):
+        new_dados = [{key_mapping.get(old_key): value for old_key, value in old_dict.items()} for old_dict in self.dados]
+        self.dados = new_dados
+        self.nome_colunas = self.getcolumns()
