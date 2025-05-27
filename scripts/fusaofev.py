@@ -7,22 +7,9 @@ from processamento_dados import Dados
 
 #funções da pipeline
 
-def salvando_dados(dados,path):
-    with open(path, 'w') as file:
-        writer = csv.writer(file)
-        writer.writerows(dados)
 
-def transformando_dados_tabela(dados, nomes_colunas):
-    
-    dados_combinados_tabela = [nomes_colunas]
 
-    for row in dados:
-        linha = []
-        for coluna in nomes_colunas:
-            linha.append(row.get(coluna, 'Indisponivel'))
-        dados_combinados_tabela.append(linha)
-    
-    return dados_combinados_tabela
+
 
 
 path_json = 'data_raw/dados_empresaA.json'
@@ -50,6 +37,11 @@ print(dados_empresaB.size_data())
 dados_fusao = Dados.join(dados_empresaA,dados_empresaB)
 print(dados_fusao)
 print(dados_fusao.qtd_linhas)
+
+# load
+path_dados_combined = 'data_processed/dados_combinados.csv'
+dados_fusao.salvando_dados(path_dados_combined)
+print(path_dados_combined)
 #iniciando a leitura dos dados
 #dados_csv = leitura_dados(path_csv,'csv')
 #nome_colunas_csv = getcolumns(dados_csv)
