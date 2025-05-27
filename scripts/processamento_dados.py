@@ -7,6 +7,7 @@ class Dados:
         self.tipo_dados = tipo_dados # Este é o atributo correto
         self.dados = self.leitura_dados() # Chama o método para carregar os dados
         self.nome_colunas = self.getcolumns()
+        self.qtd_linhas = self.size_data()
 
     def leitura_json(self):
         dados_json = []
@@ -31,6 +32,10 @@ class Dados:
             dados = self.leitura_csv()
         elif self.tipo_dados == 'json': 
             dados = self.leitura_json()
+        elif self.tipo_dados == 'list':
+            dados = self.path
+            self.path = 'lista em memoria'
+            
         return dados
         
     def getcolumns(self):
@@ -41,3 +46,13 @@ class Dados:
         new_dados = [{key_mapping.get(old_key): value for old_key, value in old_dict.items()} for old_dict in self.dados]
         self.dados = new_dados
         self.nome_colunas = self.getcolumns()
+        
+    def size_data(self):
+        return len(self.dados)
+    
+    def join(dadosA, dadosB):
+        combined_list = []
+        combined_list.extend(dadosA.dados)
+        combined_list.extend(dadosB.dados)
+        
+        return Dados(combined_list, 'list')

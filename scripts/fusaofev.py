@@ -25,15 +25,6 @@ def transformando_dados_tabela(dados, nomes_colunas):
     return dados_combinados_tabela
 
 
-def size_data(dados):
-    return len(dados)
-
-def join(dadosA, dadosB):
-    combined_list = []
-    combined_list.extend(dadosA)
-    combined_list.extend(dadosB)
-    return combined_list
-
 path_json = 'data_raw/dados_empresaA.json'
 path_csv = 'data_raw/dados_empresaB.csv'
 
@@ -53,6 +44,12 @@ key_mapping = {'Nome do Item': 'Nome do Produto',
 
 dados_empresaB.rename_columns(key_mapping)
 print(dados_empresaB.nome_colunas)
+print(dados_empresaB.size_data())
+
+
+dados_fusao = Dados.join(dados_empresaA,dados_empresaB)
+print(dados_fusao)
+print(dados_fusao.qtd_linhas)
 #iniciando a leitura dos dados
 #dados_csv = leitura_dados(path_csv,'csv')
 #nome_colunas_csv = getcolumns(dados_csv)
