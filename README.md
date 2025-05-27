@@ -1,4 +1,4 @@
-📄 Descrição do Projeto
+📄 *Descrição do Projeto*
 
 
 Este projeto implementa uma pipeline simples em Python para extrair, transformar e unificar dados de diferentes fontes (JSON e CSV). O objetivo principal é padronizar estruturas de dados distintas de duas empresas (Empresa A e Empresa B) e combiná-las em um formato único e coeso, pronto para análise ou armazenamento posterior.
