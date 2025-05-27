@@ -13,7 +13,7 @@ Transformação para Tabela: Converte a lista de dicionários combinada em um fo
 Salvamento em CSV: Salva os dados processados em um novo arquivo CSV.
 🛠️ Tecnologias Utilizadas
 
-Python 3.x
+Python 3.12.3
 Bibliotecas Padrão do Python:
 json
 csv
